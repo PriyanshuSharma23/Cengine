@@ -7,7 +7,7 @@ int main()
 {
     const char *filePath = "data/docs.gl/el3/acos.xhtml";
     std::string fileContent = Files::ReadFile(filePath);
-    std::string text = XmlParse::GetText((char *)fileContent.data());
+    std::string text = XmlParse::GetText((char *)fileContent.data()); // rapidXml requires non-const char *
 
     std::cout << text << "\n";
 
