@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Files.hpp"
-#include "Tokenizer.hpp"
+#include "Lexer.hpp"
 #include "XmlParse.hpp"
 
 int main()
@@ -10,4 +10,18 @@ int main()
     std::string text = XmlParse::GetText((char *)fileContent.data());
 
     std::cout << text << "\n";
+
+    Lexer lexer(text.c_str());
+    while (!lexer.IsTerminated())
+    {
+        const char *token = lexer.NextToken();
+        if (token == nullptr)
+        {
+            break;
+        }
+        int tokenLength = lexer.GetTokenLength(token);
+        std::string tokenString(token, tokenLength);
+        std::transform(tokenString.begin(), tokenString.end(), tokenString.begin(), ::toupper);
+        std::cout << tokenString << "\n";
+    }
 }
