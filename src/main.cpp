@@ -4,6 +4,6 @@
 
 int main()
 {
-    const char *filePath = "data/docs.gl/el3/abs.xhtml";
-    std::cout << Files::ReadFile(filePath);
+    std::vector<std::string> files = Files::ReadDir("data/docs.gl");
+    std::cout << "Number of files: " << files.size() << "\n";
 }

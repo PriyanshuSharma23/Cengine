@@ -3,8 +3,10 @@
 
 #include <string>
 #include <fstream>
-#include <iostream>
+#include <dirent.h>
 #include <vector>
+#include <stack>
+#include <iostream>
 
 namespace Files
 {
