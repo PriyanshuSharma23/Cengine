@@ -1,6 +1,7 @@
 #! /bin/bash
 
-source ./build.sh
+# Run make
+make
 
 # Run the program
-./build/output
+./build/output/out
