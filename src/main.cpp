@@ -18,7 +18,7 @@ int main()
 
     std::cout << "Parsed " << dirIndex.size() << " files" << std::endl;
 
-    const char *saveToPath = "index.json";
+    const char *saveToPath = "indexes/index.json";
     Json::DumpToJson(dirIndex, saveToPath); 
 
 
