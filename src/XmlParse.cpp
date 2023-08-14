@@ -27,7 +27,7 @@ void XmlParse::PopulateText(std::string &text, rapidxml::xml_node<> *node)
 {
     if (node->type() == rapidxml::node_data)
     {
-        text.append(node->value());
+        text.append(std::string(node->value()) + " ");
     }
     else
     {
