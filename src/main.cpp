@@ -3,7 +3,7 @@
 #include <unordered_map>
 
 #include "Files.hpp"
-
+#include "Json.hpp"
 
 int main()
 {
@@ -15,13 +15,11 @@ int main()
         Files::IndexFIle(filePath.c_str(), dirIndex[filePath]);
     }
 
-//    for (auto &pair: dirIndex) {
-//        for (auto &pair2: dirIndex[pair.first]) {
-//            std::cout << pair2.first << ", " << pair2.second << std::endl;
-//        }
-//        break;
-//    }
 
     std::cout << "Parsed " << dirIndex.size() << " files" << std::endl;
+
+    const char *saveToPath = "index.json";
+    Json::DumpToJson(dirIndex, saveToPath); 
+
 
 }
