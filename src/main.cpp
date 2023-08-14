@@ -1,27 +1,19 @@
 #include <iostream>
+#include <string>
+#include <unordered_map>
 #include "Files.hpp"
-#include "Lexer.hpp"
-#include "XmlParse.hpp"
+
 
 int main()
 {
-    const char *filePath = "data/docs.gl/el3/acos.xhtml";
-    std::string fileContent = Files::ReadFile(filePath);
-    std::string text = XmlParse::GetText((char *)fileContent.data()); // rapidXml requires non-const char *
+    const char* dirPath = "data/docs.gl/";
+    std::vector<std::string> files = Files::ReadDir(dirPath);
 
-    std::cout << text << "\n";
-
-    Lexer lexer(text.c_str());
-    while (!lexer.IsTerminated())
-    {
-        const char *token = lexer.NextToken();
-        if (token == nullptr)
-        {
-            break;
-        }
-        int tokenLength = lexer.GetTokenLength(token);
-        std::string tokenString(token, tokenLength);
-        std::transform(tokenString.begin(), tokenString.end(), tokenString.begin(), ::toupper);
-        std::cout << tokenString << "\n";
+    std::unordered_map<std::string, std::unordered_map<std::string, size_t>> dirIndex;
+    for (auto &filePath: files) {
+        Files::IndexFIle(filePath.c_str(), dirIndex[filePath]);
     }
+
+    std::cout << "Parsed " << dirIndex.size() << " files" << std::endl;
+
 }

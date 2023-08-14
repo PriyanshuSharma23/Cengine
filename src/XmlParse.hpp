@@ -2,6 +2,7 @@
 #define RADIXXML_HPP__
 
 // RapidXml http://rapidxml.sourceforge.net/
+#include <iostream>
 #include "rapidxml/rapidxml_print.hpp"
 #include "rapidxml/rapidxml_utils.hpp"
 

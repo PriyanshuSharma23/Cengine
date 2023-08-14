@@ -1,14 +1,22 @@
 #include "XmlParse.hpp"
+#include <ostream>
+
+class ParseError {};
 
 std::string XmlParse::GetText(char *buffer)
 {
     using namespace rapidxml;
     xml_document<> doc;
+
     doc.parse<0>(buffer);
 
     // get all text nodes in the XHTML document
     xml_node<> *node = doc.first_node();
     std::string text;
+
+    if (!node) {
+        throw ParseError();
+    }
 
     PopulateText(text, node);
 
