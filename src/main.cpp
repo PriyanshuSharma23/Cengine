@@ -1,25 +1,28 @@
 #include <iostream>
-#include <string>
-#include <unordered_map>
 
-#include "Files.hpp"
-#include "Json.hpp"
+#include "Cli.hpp"
 
-int main()
+int main(int argc, char* argv[])
 {
-    const char* dirPath = "data/docs.gl/";
-    std::vector<std::string> files = Files::ReadDir(dirPath);
-
-    std::unordered_map<std::string, std::unordered_map<std::string, size_t>> dirIndex;
-    for (auto &filePath: files) {
-        Files::IndexFIle(filePath.c_str(), dirIndex[filePath]);
+    try {
+        Cli::HandleArgs(argc, argv);
+    } catch (Cli::CliError& err) {
+        err.Log();
     }
 
+//    const char* dirPath = "data/docs.gl/";
+//    std::vector<std::string> files = Files::ReadDir(dirPath);
 
-    std::cout << "Parsed " << dirIndex.size() << " files" << std::endl;
+//    std::unordered_map<std::string, std::unordered_map<std::string, size_t>> dirIndex;
+ //   for (auto &filePath: files) {
+  //      Files::IndexFIle(filePath.c_str(), dirIndex[filePath]);
+   // }
 
-    const char *saveToPath = "indexes/index.json";
-    Json::DumpToJson(dirIndex, saveToPath); 
+
+    //std::cout << "Parsed " << dirIndex.size() << " files" << std::endl;
+
+//    const char *saveToPath = "indexes/index.json";;
+ //   Json::DumpToJson(dirIndex, saveToPath); 
 
 
 }
