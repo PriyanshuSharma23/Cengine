@@ -63,7 +63,8 @@ std::vector<std::string> Files::ReadDir(const char *dirPath)
     }
     else
     {
-        std::cout << "Unable to open directory" << std::endl;
+//        std::cout << "unable to open directory" << std::endl;
+        throw IoError("Unable to open directory");
     }
 
     return files;
@@ -93,4 +94,19 @@ void Files::IndexFIle(const char* filePath, std::unordered_map<std::string, size
     }
 
 
+}
+
+std::unordered_map<std::string, std::unordered_map<std::string, size_t>> Files::IndexDir(const char* dirPath) {
+    try {
+        std::vector<std::string> files = Files::ReadDir(dirPath);
+        std::unordered_map<std::string, std::unordered_map<std::string, size_t>> dirIndex;
+        for (auto &filePath: files) {
+            Files::IndexFIle(filePath.c_str(), dirIndex[filePath]);
+        }
+
+        std::cout << "Parsed " << dirIndex.size() << " files" << std::endl;
+        return dirIndex;
+    } catch(Files::IoError& error) {
+        throw;
+    }
 }
