@@ -1,5 +1,12 @@
 
 #include <iostream>
+#include <cstdlib>
+#include <functional>
+#include <string>
+
+#include "Files.hpp"
+#include "Json.hpp"
+
 
 namespace Cli {
     void HandleArgs(int argc, char* argv[]);
