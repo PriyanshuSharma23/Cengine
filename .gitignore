@@ -1,3 +1,12 @@
 build/
 data/docs.gl/
 indexes/
+
+Makefile
+**/Makefile
+
+SearchEngineCore/bin
+SearchEngineCore/obj
+
+Cli/bin
+Cli/obj

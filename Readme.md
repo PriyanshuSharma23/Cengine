@@ -1,6 +1,6 @@
 # Cengine (C++ Local Search Engine)
 
-Inspired from [Seroot by Tsoding](https://github.com/tsoding/seroost), this is a C++ implementation of the same idea.
+Inspired from [Seroost by Tsoding](https://github.com/tsoding/seroost), this is a C++ implementation of the same idea.
 I have cloned the documentation of [doc.gl](https://doc.gl) and have made a local search engine for it.
 
 ## Dependencies
