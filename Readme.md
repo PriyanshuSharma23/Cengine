@@ -6,21 +6,7 @@ I have cloned the documentation of [doc.gl](https://doc.gl) and have made a loca
 ## Dependencies
 
 - [RapidXml v1.13](http://rapidxml.sourceforge.net/) - For parsing the XML files
-
-## Usage
-
-- Clone the repository, and cd into it.
-- Run the following command to build the project:
-
-```bash
-make
-```
-
-- Or, build and run the project:
-
-```bash
-./run.sh
-```
+- [nholmann/json v3.7.3](https://github.com/nlohmann/json) - For handling JSON
 
 ## Usage
 
