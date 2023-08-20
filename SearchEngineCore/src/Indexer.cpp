@@ -20,11 +20,19 @@ void Indexer::IndexDir(const char* absoluteDirPath) {
   }
 }
 
-void Indexer::RetrieveIndex(const char* absoluteDirPath) {
+std::unordered_map<std::string, std::unordered_map<std::string, size_t>>
+Indexer::RetrieveIndex(const char* absoluteDirPath) {
+  std::string content;
   try {
+    std::string hashedPath = std::string("SearchEngineCore/indexes/") +
+                             std::to_string(Encode(absoluteDirPath)) + ".json";
+    content = Files::ReadFile(hashedPath.c_str());
   } catch (Files::IoError& err) {
-    std::cerr << err.GetMessage() << std::endl;
+    std::cout << err.GetMessage() << std::endl;
   }
+
+  auto parsedJson = Json::ExtractFromJson(content);
+  return parsedJson;
 }
 
 std::unordered_map<std::string, std::unordered_map<std::string, size_t>>

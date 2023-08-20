@@ -8,9 +8,16 @@ void Cli::Help() {
   std::cout << "Cengine (C++ Search Engine)" << std::endl;
   std::cout << "Commands: " << std::endl;
   std::cout << "\t" << 1 << ") "
-            << "help  - Get a list of all commands" << std::endl;
+            << "help                            - Get a list of all commands"
+            << std::endl;
   std::cout << "\t" << 2 << ") "
-            << "index - Index all the XML/XHTML files in a directory"
+            << "index <directory-path>          - Index all the XML/XHTML "
+               "files in a directory"
+            << std::endl;
+
+  std::cout << "\t2) "
+            << "search <directory-path> <query> - Search for the query in a "
+               "given directory"
             << std::endl;
 }
 
@@ -43,6 +50,23 @@ void Cli::HandleArgs(int argc, char* argv[]) {
     }
 
     Indexer::IndexDir(absolutePath);
+  } else if (cmd == "search") {
+    if (argc < 3) {
+      throw CliError(
+          "Please enter a directory path to index and search query.");
+    }
+
+    const char* dirPath = argv[2];
+    const char* absolutePath = AbsolutePath(dirPath);
+
+    if (!absolutePath) {
+      throw CliError("Invalid path");
+    }
+
+    Indexer::RetrieveIndex(absolutePath);
+
+  } else {
+    throw CliError("Command not found.");
   }
 }
 

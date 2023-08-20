@@ -15,6 +15,10 @@ class Json {
       std::unordered_map<std::string, std::unordered_map<std::string, size_t>>&
           dirIndex,
       const char* saveToPath);
+
+  static std::unordered_map<std::string,
+                            std::unordered_map<std::string, size_t>>
+  ExtractFromJson(std::string& content);
 };
 
 #endif  // JSON_HPP__

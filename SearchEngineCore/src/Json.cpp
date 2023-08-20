@@ -61,3 +61,11 @@ void Json::DumpToJson(
     std::cout << "Unable to open file " << saveToPath << std::endl;
   }
 }
+
+std::unordered_map<std::string, std::unordered_map<std::string, size_t>>
+Json::ExtractFromJson(std::string &content) {
+  nlohmann::json js = nlohmann::json::parse(content);
+  std::cout << "Parsed to json" << std::endl;
+
+  return js;
+}

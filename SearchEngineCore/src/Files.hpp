@@ -33,16 +33,14 @@ std::string ReadFile(const char* filePath);
  */
 std::vector<std::string> ReadDir(const char* dirPath);
 
-
-
 class IoError {
  private:
-  const char* m_Messge;
+  const std::string m_Messge;
 
  public:
-  IoError(std::string& message) : m_Messge(message.c_str()) {}
+  IoError(std::string message) : m_Messge(message) {}
   IoError(const char* message) : m_Messge(message) {}
-  const char* GetMessage() const { return m_Messge; }
+  const std::string GetMessage() const { return m_Messge; }
 };
 
 }  // namespace Files

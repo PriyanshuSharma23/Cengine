@@ -14,7 +14,8 @@ void IndexFile(const char* filePath,
 std::unordered_map<std::string, std::unordered_map<std::string, size_t>>
 CreateIndex(const char* dirPath);
 
-void RetrieveIndex(const char* absoluteFilePath);
+std::unordered_map<std::string, std::unordered_map<std::string, size_t>>
+RetrieveIndex(const char* absoluteFilePath);
 
 }  // namespace Indexer
 

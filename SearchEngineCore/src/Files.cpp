@@ -4,15 +4,17 @@ std::string Files::ReadFile(const char *filePath) {
   std::string fileData;
   std::ifstream file(filePath);
 
+  if (!file.good()) {
+    auto errorMessage = std::string("Unable to open file ") + filePath;
+    throw IoError(errorMessage);
+  }
+
   if (file.is_open()) {
     std::string line;
     while (getline(file, line)) {
       fileData += line + "\n";
     }
     file.close();
-  } else {
-    auto errorMessage = std::string("Unable to open file ") + filePath;
-    throw IoError(errorMessage);
   }
 
   return fileData;
@@ -49,7 +51,8 @@ std::vector<std::string> Files::ReadDir(const char *dirPath) {
       closedir(dir);
     }
   } else {
-    auto errorMessage = std::string("Unable to open directory ") + dirPath;
+    std::string errorMessage =
+        std::string("Unable to open directory ") + dirPath;
     throw IoError(errorMessage);
   }
 
