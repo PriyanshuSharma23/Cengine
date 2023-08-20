@@ -14,7 +14,8 @@
 #include "Lexer.hpp"
 #include "XmlParse.hpp"
 
-namespace Files {
+namespace Files
+{
 /**
  * ReadFile (const char* filePath)
  * filePath - Path of the file to be read
@@ -22,7 +23,7 @@ namespace Files {
  * returns - std::string of the content in the file
  * throws - `IoError` when unable to read the given file
  */
-std::string ReadFile(const char* filePath);
+std::string ReadFile(const char *filePath);
 
 /*
  * ReadDir (const char* dirPath);
@@ -31,18 +32,28 @@ std::string ReadFile(const char* filePath);
  * returns - Vector of all the files inside a given directory (Including
  * subfolders) throws - IoError, when unable to open the given dir
  */
-std::vector<std::string> ReadDir(const char* dirPath);
+std::vector<std::string> ReadDir(const char *dirPath);
 
-class IoError {
- private:
-  const std::string m_Messge;
+class IoError
+{
+  private:
+    const std::string m_Messge;
 
- public:
-  IoError(std::string message) : m_Messge(message) {}
-  IoError(const char* message) : m_Messge(message) {}
-  const std::string GetMessage() const { return m_Messge; }
+  public:
+    IoError(std::string message) : m_Messge(message)
+    {
+    }
+
+    IoError(const char *message) : m_Messge(message)
+    {
+    }
+
+    const std::string GetMessage() const
+    {
+        return m_Messge;
+    }
 };
 
-}  // namespace Files
+} // namespace Files
 
-#endif  // FILES_HPP
+#endif // FILES_HPP

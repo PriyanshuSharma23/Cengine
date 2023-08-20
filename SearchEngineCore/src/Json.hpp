@@ -7,18 +7,16 @@
 #include <string>
 #include <unordered_map>
 
-class Json {
-  static bool IsValidUTF8(const std::string& str);
+class Json
+{
+    static bool IsValidUTF8(const std::string &str);
 
- public:
-  static void DumpToJson(
-      std::unordered_map<std::string, std::unordered_map<std::string, size_t>>&
-          dirIndex,
-      const char* saveToPath);
+  public:
+    static void DumpToJson(std::unordered_map<std::string, std::unordered_map<std::string, size_t>> &dirIndex,
+                           const char *saveToPath);
 
-  static std::unordered_map<std::string,
-                            std::unordered_map<std::string, size_t>>
-  ExtractFromJson(std::string& content);
+    static std::unordered_map<std::string, std::unordered_map<std::string, size_t>> ExtractFromJson(
+        std::string &content);
 };
 
-#endif  // JSON_HPP__
+#endif // JSON_HPP__

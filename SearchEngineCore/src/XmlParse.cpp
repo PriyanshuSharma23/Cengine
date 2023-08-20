@@ -1,33 +1,41 @@
 #include "XmlParse.hpp"
 
-class ParseError {};
+class ParseError
+{
+};
 
-std::string XmlParse::GetText(char *buffer) {
-  using namespace rapidxml;
-  xml_document<> doc;
+std::string XmlParse::GetText(char *buffer)
+{
+    using namespace rapidxml;
+    xml_document<> doc;
 
-  doc.parse<0>(buffer);
+    doc.parse<0>(buffer);
 
-  // get all text nodes in the XHTML document
-  xml_node<> *node = doc.first_node();
-  std::string text;
+    // get all text nodes in the XHTML document
+    xml_node<> *node = doc.first_node();
+    std::string text;
 
-  if (!node) {
-    throw ParseError();
-  }
+    if (!node)
+    {
+        throw ParseError();
+    }
 
-  PopulateText(text, node);
+    PopulateText(text, node);
 
-  return text;
+    return text;
 }
 
-void XmlParse::PopulateText(std::string &text, rapidxml::xml_node<> *node) {
-  if (node->type() == rapidxml::node_data) {
-    text.append(std::string(node->value()) + " ");
-  } else {
-    for (auto child = node->first_node(); child;
-         child = child->next_sibling()) {
-      PopulateText(text, child);
+void XmlParse::PopulateText(std::string &text, rapidxml::xml_node<> *node)
+{
+    if (node->type() == rapidxml::node_data)
+    {
+        text.append(std::string(node->value()) + " ");
     }
-  }
+    else
+    {
+        for (auto child = node->first_node(); child; child = child->next_sibling())
+        {
+            PopulateText(text, child);
+        }
+    }
 }

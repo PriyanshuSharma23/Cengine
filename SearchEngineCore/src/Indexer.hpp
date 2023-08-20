@@ -6,17 +6,16 @@
 
 #include "Files.hpp"
 
-namespace Indexer {
-void IndexDir(const char* absoluteFilePath);
-void IndexFile(const char* filePath,
-               std::unordered_map<std::string, size_t>& tokenCounts);
+namespace Indexer
+{
 
-std::unordered_map<std::string, std::unordered_map<std::string, size_t>>
-CreateIndex(const char* dirPath);
+void IndexDir(const char *absoluteFilePath);
+void IndexFile(const char *filePath, std::unordered_map<std::string, size_t> &tokenCounts);
 
-std::unordered_map<std::string, std::unordered_map<std::string, size_t>>
-RetrieveIndex(const char* absoluteFilePath);
+std::unordered_map<std::string, std::unordered_map<std::string, size_t>> CreateIndex(const char *dirPath);
 
-}  // namespace Indexer
+std::unordered_map<std::string, std::unordered_map<std::string, size_t>> RetrieveIndex(const char *absoluteFilePath);
 
-#endif  // INDEXER_HPP
+} // namespace Indexer
+
+#endif // INDEXER_HPP
