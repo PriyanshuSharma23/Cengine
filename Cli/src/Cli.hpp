@@ -4,8 +4,7 @@
 #include <iostream>
 #include <string>
 
-#include "Files.hpp"
-#include "Json.hpp"
+#include "Indexer.hpp"
 
 namespace Cli {
 void HandleArgs(int argc, char* argv[]);

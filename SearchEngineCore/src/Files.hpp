@@ -33,11 +33,7 @@ std::string ReadFile(const char* filePath);
  */
 std::vector<std::string> ReadDir(const char* dirPath);
 
-void IndexFIle(const char* filePath,
-               std::unordered_map<std::string, size_t>& tokenCounts);
 
-std::unordered_map<std::string, std::unordered_map<std::string, size_t>>
-IndexDir(const char* dirPath);
 
 class IoError {
  private:
