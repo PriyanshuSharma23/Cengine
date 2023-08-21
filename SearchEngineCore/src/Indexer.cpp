@@ -75,16 +75,12 @@ void Indexer::IndexFile(const char *filePath, TermFreq &tokenCounts)
         Lexer lexer(text.c_str());
         while (!lexer.IsTerminated())
         {
-            const char *token = lexer.NextToken();
-            if (token == nullptr)
+            Lexer::Token token = lexer.NextToken();
+            if (token.type == Lexer::TokenType::END)
             {
                 break;
             }
-            int tokenLength = lexer.GetTokenLength(token);
-            std::string tokenString(token, tokenLength);
-            std::transform(tokenString.begin(), tokenString.end(), tokenString.begin(), ::toupper);
-
-            tokenCounts[tokenString]++;
+            tokenCounts[token.value]++;
         }
     }
     catch (...)
