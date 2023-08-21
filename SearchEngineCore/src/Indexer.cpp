@@ -25,8 +25,7 @@ void Indexer::IndexDir(const char *absoluteDirPath)
     }
 }
 
-std::unordered_map<std::string, std::unordered_map<std::string, size_t>> Indexer::RetrieveIndex(
-    const char *absoluteDirPath)
+TermIndex Indexer::RetrieveIndex(const char *absoluteDirPath)
 {
     std::string content;
     try
@@ -34,22 +33,23 @@ std::unordered_map<std::string, std::unordered_map<std::string, size_t>> Indexer
         std::string hashedPath =
             std::string("SearchEngineCore/indexes/") + std::to_string(Encode(absoluteDirPath)) + ".json";
         content = Files::ReadFile(hashedPath.c_str());
+
+        auto parsedJson = Json::ExtractFromJson(content);
+        return parsedJson;
     }
     catch (Files::IoError &err)
     {
         std::cout << err.GetMessage() << std::endl;
+        throw IndexError(std::string("Failed to index ") + absoluteDirPath);
     }
-
-    auto parsedJson = Json::ExtractFromJson(content);
-    return parsedJson;
 }
 
-std::unordered_map<std::string, std::unordered_map<std::string, size_t>> Indexer::CreateIndex(const char *dirPath)
+TermIndex Indexer::CreateIndex(const char *dirPath)
 {
     try
     {
         std::vector<std::string> files = Files::ReadDir(dirPath);
-        std::unordered_map<std::string, std::unordered_map<std::string, size_t>> dirIndex;
+        TermIndex dirIndex;
         for (auto &filePath : files)
         {
             IndexFile(filePath.c_str(), dirIndex[filePath]);
@@ -60,11 +60,12 @@ std::unordered_map<std::string, std::unordered_map<std::string, size_t>> Indexer
     }
     catch (Files::IoError &error)
     {
-        throw;
+        std::cout << error.GetMessage() << std::endl;
+        throw IndexError(std::string("Failed to create index for ") + dirPath);
     }
 }
 
-void Indexer::IndexFile(const char *filePath, std::unordered_map<std::string, size_t> &tokenCounts)
+void Indexer::IndexFile(const char *filePath, TermFreq &tokenCounts)
 {
     std::string fileContent = Files::ReadFile(filePath);
     std::cout << "Parsing " << filePath << "..." << std::endl;

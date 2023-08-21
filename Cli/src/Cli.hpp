@@ -5,6 +5,7 @@
 #include <string>
 
 #include "Indexer.hpp"
+#include "Search.hpp"
 
 namespace Cli
 {

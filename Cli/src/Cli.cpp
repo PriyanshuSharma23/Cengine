@@ -75,7 +75,11 @@ void Cli::HandleArgs(int argc, char *argv[])
             throw CliError("Invalid path");
         }
 
-        Indexer::RetrieveIndex(absolutePath);
+        Search::GetInstance()->SetActiveDir(absolutePath);
+
+        const char *query = argv[3];
+        std::cout << "Query is " << query << std::endl;
+        Search::GetInstance()->SearchQuery(query);
     }
     else
     {
