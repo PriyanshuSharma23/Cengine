@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <title>Cengine</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="container mx-auto pt-8">
+    <h1 class="text-5xl font-bold">Cengine</h1>
+    <p class="text-lg font-medium text-neutral-600">Local files search engine built using <code class="bg-gray-200 p-1 rounded">C++</code></p>
+    <form class="flex gap-2 items-center mt-4">
+        <div>
+            <label for="file-input" class="sr-only">Choose file</label>
+            <input type="file" name="file-input" id="file-input" class="max-w-[300px] block w-full border border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 
+            file:bg-transparent file:border-0
+            file:bg-gray-100 file:mr-4
+            file:py-3 file:px-4
+            ">
+        </div>
+        <div>
+            <input name="query" type="text" class="px-4 py-2 border rounded shadow min-w-[300px]">
+            <button type="submit" class="px-5 py-2 bg-blue-600 text-white rounded ml-2">Search</button>
+        </div>
+    </form>
+</body>
+
+</html>
