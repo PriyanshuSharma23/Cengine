@@ -11,3 +11,6 @@ SearchEngineCore/obj
 
 Cli/bin
 Cli/obj
+
+Server/bin
+Server/obj
