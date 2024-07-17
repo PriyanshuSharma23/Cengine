@@ -16,7 +16,7 @@ void Cli::Help()
                  "files in a directory"
               << std::endl;
 
-    std::cout << "\t2) "
+    std::cout << "\t3) "
               << "search <directory-path> <query> - Search for the query in a "
                  "given directory"
               << std::endl;
